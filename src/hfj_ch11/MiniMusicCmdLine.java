@@ -1,6 +1,7 @@
 package hfj_ch11;
 
 import java.util.Arrays;
+import java.util.Scanner;
 
 import javax.sound.midi.*;
 
@@ -10,8 +11,24 @@ public class MiniMusicCmdLine {
 		// TODO Auto-generated method stub
 		
 		int[] args2 = new int[2];
-		args2[0] = 40;
-		args2[1] = 70;
+		
+		int counter = 2;
+		
+		for (int i = 0; i < 2; i++){
+			counter--;
+			if (args2[0] > 0){
+				System.out.println("Sisesta noot");
+			} else {
+				System.out.println("Sisesta instrument");
+			}
+	
+			Scanner sc = new Scanner(System.in);
+			int userInput = sc.nextInt();
+		
+			args2[i] = userInput;
+		}
+//		args2[0] = 40;
+//		args2[1] = 70;
 		System.out.println(Arrays.toString(args2));
 		
 		MiniMusicCmdLine mini = new MiniMusicCmdLine();
@@ -51,9 +68,9 @@ public class MiniMusicCmdLine {
 			track.add(noteOff);
 			player.setSequence(seq);
 			player.start();
-//				Thread.sleep(5000);
-//				player.close();
-//			System.exit(0);
+				Thread.sleep(5000);
+				player.close();
+			System.exit(0);
 			
 		} catch (Exception ex){
 			ex.printStackTrace();
