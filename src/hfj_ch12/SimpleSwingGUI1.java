@@ -5,8 +5,11 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class SimpleSwingGUI1 implements ActionListener {
-	JButton button;
+public class SimpleSwingGUI1 {
+	JButton colorButton;
+	JButton labelButton;
+	JFrame frame;
+	JLabel label;
 	
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
@@ -15,20 +18,38 @@ public class SimpleSwingGUI1 implements ActionListener {
 	}
 	
 	public void go(){
-		JFrame frame = new JFrame();
-		button = new JButton("click me");
-		button.addActionListener(this);
+		frame = new JFrame();
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.getContentPane().add(button);
+		
+		colorButton = new JButton("change color");
+		colorButton.addActionListener(new ColorListener());
+		
+		labelButton = new JButton("change label");
+		labelButton.addActionListener(new LabelListener());
+		
+		label = new JLabel("I'm a label");
+		MyDrawPanel drawPanel = new MyDrawPanel();
+		
+		frame.getContentPane().add(BorderLayout.SOUTH, colorButton);
+		frame.getContentPane().add(BorderLayout.CENTER, drawPanel);
+		frame.getContentPane().add(BorderLayout.EAST, labelButton);
+		frame.getContentPane().add(BorderLayout.WEST, label);
 		frame.setSize(300, 300);
 		frame.setVisible(true);
 	}
-
-	@Override
-	public void actionPerformed(ActionEvent event) {
-		// TODO Auto-generated method stub
-		button.setText("I'v been clicked");
+	
+	class ColorListener implements ActionListener{
+		public void actionPerformed(ActionEvent e) {
+			frame.repaint();
+			
+		}
 		
 	}
 
+	class LabelListener implements ActionListener {
+		public void actionPerformed(ActionEvent e) {
+			label.setText("Label changed!");	
+		}		
+	}
+	
 }
