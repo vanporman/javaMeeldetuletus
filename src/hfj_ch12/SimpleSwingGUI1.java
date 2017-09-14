@@ -17,17 +17,11 @@ public class SimpleSwingGUI1 implements ActionListener {
 	public void go(){
 		JFrame frame = new JFrame();
 		button = new JButton("click me");
-		
 		button.addActionListener(this);
-		
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		
 		frame.getContentPane().add(button);
-		
 		frame.setSize(300, 300);
-		
 		frame.setVisible(true);
-
 	}
 
 	@Override
